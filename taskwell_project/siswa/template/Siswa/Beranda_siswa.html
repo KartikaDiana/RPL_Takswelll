@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beranda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Jomhuria&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-image: url('gambar/download.svg');
+      overflow: hidden;
+    }
+
+    .topbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f7ecd9;
+      border-bottom: 1px solid #d4c0a5;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 55px;
+      background-image: url('gambar/logoo.png');
+      background-size: cover;
+    }
+
+    .app-title {
+      font-size: 50px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-top: 12px;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      color: #333;
+      margin-top: -13px;
+      line-height: 1;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .topbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-icons p,
+    .profile-icon {
+      font-size: 50px;
+      cursor: pointer;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      border: 1px solid #000;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      flex-grow: 1;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .container.sidebar-hidden {
+      grid-template-columns: 0 1fr;
+    }
+
+    .sidebar {
+      background-color: #f3e4ce;
+      width: 220px;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      border-right: 1px solid #d4c0a5;
+      transition: transform 0.3s ease;
+      transform: translateX(0);
+    }
+
+    .sidebar.hidden {
+      transform: translateX(-100%);
+    }
+
+    .sidebar button {
+      width: 100%;
+      font-size: 25px;
+      background-color: #e3d0b7;
+      border: none;
+      padding: 8px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .sidebar button:hover {
+      background-color: #d4b999;
+    }
+
+    .pet-image {
+      width: 120px;
+      height: 120px;
+      background-image: url('./gambar/pet.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 2px;
+    }
+
+    #menuToggle {
+      font-size: 35px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      overflow-y: auto;
+    }
+
+    .card {
+      max-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #fff7ed;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-avatar {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 80px;
+      background-size: 110px;
+      background-position: center;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+    }
+
+    .card img.cover {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background-color: #e0d4c6;
+    }
+
+    .card .info {
+      padding: 15px;
+    }
+
+    .card .info p {
+      font-size: 13px;
+      color: #5a4b42;
+      margin-bottom: 4px;
+    }
+
+    .card .info h3 {
+      margin-top: 20px;
+      font-size: 30px;
+      font-family: 'Jomhuria', cursive;
+      letter-spacing: 1.2px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-left">
+      <p id="menuToggle">☰</p>
+      <div class="logo"></div>
+      <div>
+        <div class="app-title">Task Well</div>
+        <div class="subtitle">Siswa</div>
+      </div>
+    </div>
+
+    <div class="topbar-icons">
+      <p>+</p>
+      <div class="profile-icon"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <div class="pet-image"></div>
+      <button>Beranda</button>
+      <button> <a href="Tugas.html" class="a-navbar">Tingkatan Tugas</a></button>
+      <button> <a href="Profile.html" class="a-navbar">Profil</a></button>
+      <button>FAQ</button>
+    </div>
+
+    <div class="main-content">
+      <div class="card">
+        <div class="card-avatar" style="background-image: url('gambar/icon_beranda.png');"></div>
+        <img class="cover" src="gambar/books.png" alt="Kurikulum">
+        <div class="info">
+          <p>Guru, Kartika Diana<br>Semester 4 - 2024</p>
+          <h3>KURIKULUM PEMBELAJARAN</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-avatar" style="background-image: url('gambar/icon_beranda2.png');"></div>
+        <img class="cover" src="gambar/rumus.png" alt="Algoritma">
+        <div class="info">
+          <p>Guru, Alya Nurul Hanifah<br>Semester 4 - 2024</p>
+          <h3>ALGORITMA PEMROGRAMAN</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('menuToggle').addEventListener('click', function () {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
