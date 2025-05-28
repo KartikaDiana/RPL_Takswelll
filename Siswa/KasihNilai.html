@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskWell Modal</title>
+  <style>
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      transition: opacity 0.5s ease;
+    }
+    html, body {
+      overflow: hidden;
+    }
+    .modal-wrapper {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(5px);
+      
+    }
+
+    .modal-box {
+      background-color: #fde8d9;
+      width: 650px;
+      padding: 0;
+      border-radius: 25px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    
+
+    .modal-header {
+      background-color: #8a4723;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      padding: 35px;
+      color: white;
+      position: relative;
+      overflow: visible; /* biar gambar bisa keluar dari box */
+    }
+
+    .modal-header > div {
+      padding-right: 10px; /* beri ruang agar tidak tertabrak capybara */
+    }
+
+
+    .modal-header img {
+      position: absolute;
+      right: -50px; /* geser ke kanan luar */
+      top: -10px;   /* geser sedikit naik */
+      height: 130px;
+      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.2));
+      z-index: 2;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .message-box {
+      width: 95%;
+      height: 30px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: none;
+      font-family: monospace;
+    }
+
+    .file-box {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-top: 16px;
+      gap: 10px;
+      width: 95%;
+    }
+
+    .file-box img {
+      height: 20px;
+    }
+
+    .deadline {
+      margin-top: 10px;
+      color: red;
+      font-size: 14px;
+    }
+
+    .edited {
+      font-size: 13px;
+      color: #333;
+    }
+
+    .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-top: 24px;
+   }
+
+    .level-box, .score-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #f0e0d0;
+      padding: 12px;
+      border-radius: 16px;
+      height: 100%;
+      text-align: center;
+  }
+
+  .level-button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #00b7ff;
+    color: white;
+    border: none;
+    font-weight: bold;
+    margin-top: 8px;
+    text-align: center; 
+  }
+
+  .score-input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    width: 90%;
+    text-align: center;
+  }
+
+  .submit-btn {
+    align-self: flex-end;
+    height: 100%;
+    padding: 12px 20px;
+    background-color: #7b3f1d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+</style>
+</head>
+<body>
+  <div class="modal-wrapper">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <b>Siswa sudah mengerjakan tugasnya nih! yuk kita cek dan 
+          <br>kita nilai, sejauh mana siswa sudah memahami yang kamu ajarkan!</br></b>
+        </div>
+        <img src="gambar/CapyBara.png" alt="Capybara">
+      </div>
+      <div class="modal-body">
+        <textarea class="message-box" readonly>Assalamualaikum bu, berikut tugas pengumpulan minggu ini, terima kasih</textarea>
+
+        <div class="file-box">
+          <span>2300408_Cynthia Hasna Mazaya_KURPEM.pdf</span>
+        </div>
+
+        <div class="deadline">
+          Deadline: 12 Oct 2025, 23.59
+        </div>
+        <div class="edited">
+          Edited: 11 Oct 2025, 23.50
+        </div>
+
+        <div class="row">
+          <div class="level-box">
+            <span><b>Level Tugas</b></span>
+            <div class="level-button">medium</div>
+          </div>
+          <div class="score-box">
+            <span><b>Nilai</b></span>
+            90
+          </div>
+          <button class="submit-btn">kirim</button>
+        </div>
+        
+    </div>
+  </div>
+
+  <script>
+    const scoreInput = document.querySelector('.score-input');
+    const submitBtn = document.querySelector('.submit-btn');
+  
+    // Mulai tombol submit disabled
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = 0.5;  // supaya terlihat disabled
+  
+    scoreInput.addEventListener('input', () => {
+      if (scoreInput.value.trim() !== '') {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = 1;
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = 0.5;
+      }
+    });
+  
+    submitBtn.addEventListener('click', () => {
+      if (!submitBtn.disabled) {
+        alert('Nilai "' + scoreInput.value.trim() + '" telah dikirim!');
+        // Kamu bisa tambahkan aksi lain seperti kirim data ke server di sini
+      }
+    });
+  </script>
+  
+</body>
+</html>
