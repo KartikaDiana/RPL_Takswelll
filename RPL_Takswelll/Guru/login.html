@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Well - Blur Background</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Jomhuria', cursive;
+      background-color: rgba(0, 0, 0, 0.4); /* Tetap ada gelap tipis jika mau */
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .background-layer {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom, #f7ecd9, #e6d4b4);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 0;
+    }
+
+
+    .content-layer {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #d4c0a5;
+      background-color: #f7ecd9;
+      filter: blur(2px);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-icon {
+      font-size: 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .logo {
+      width: 60px;
+      height: 55px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+    }
+
+    .app-title {
+      font-size: 45px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      margin-top: -10px;
+      color: #333;
+    }
+
+    .topbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-icons p,
+    .profile-icon {
+      font-size: 30px;
+      cursor: pointer;
+      
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #b79c7a;
+      border-radius: 50%;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+      border: 1px solid #000;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      width: 100%;
+    }
+
+    .sidebar {
+      background-color: #f3e4ce;
+      width: 220px;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border-right: 1px solid #d4c0a5;
+      align-items: center;
+      filter: blur(2px);
+    }
+
+    .sidebar-logo-only {
+      width: 80px;
+      height: 80px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .sidebar button {
+      background-color: #e3d0b7;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 20px;
+      font-size: 25px;
+      cursor: pointer;
+      text-align: center;
+      font-family: 'Jomhuria', cursive;
+      width: 100%;
+    }
+
+    .sidebar button:hover {
+      background-color: #d4b999;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .login-card {
+      background-color: #8b6651;
+      padding: 20px;
+      border-radius: 30px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 600px;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    .login-card img {
+      width: 180px;
+      margin-bottom: -30px;
+      margin-top: -75px;
+    }
+
+    .dropdown, .add-email-form {
+      margin-top: 20px;
+      background-color: white;
+      border-radius: 15px;
+      text-align: left;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      color: black;
+    }
+
+    .dropdown-header {
+      padding: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 20px;
+    }
+
+    .dropdown-content {
+      display: none;
+      border-top: 1px solid #ddd;
+      font-size: 20px;
+    }
+
+    .dropdown-option {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .dropdown-option:hover {
+      background-color: #f0f0f0;
+    }
+
+    .dropdown-option img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .continue-btn {
+      margin-top: 20px;
+      width: 50%;
+      padding: 12px;
+      background-color: #ccc;
+      border: none;
+      border-radius: 10px;
+      color: rgb(5, 5, 5);
+      cursor: not-allowed;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .continue-btn.active {
+      background-color: #4CAF50;
+      cursor: pointer;
+    }
+
+    .add-email-form {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+      font-size: 20px;
+    }
+
+    .add-email-form input, .add-email-form select,
+    .add-email-form button {
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 20px;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .add-email-form input, .add-email-form select {
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    .add-email-form button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .add-email-form button:hover {
+      background-color: #45a049;
+    }
+
+    .add-email-form select {
+  color: #999; /* Awalnya abu-abu */
+}
+
+/* Saat user memilih selain placeholder */
+.add-email-form select:valid {
+  color: #000; /* Jadi hitam */
+}
+
+  </style>
+</head>
+<body>
+  <!-- Latar belakang blur -->
+  <div class="background-layer"></div>
+
+  <!-- Semua konten utama -->
+  <div class="content-layer">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <p class="menu-icon">☰</p>
+        <div class="logo"></div>
+        <div>
+          <div class="app-title">Task Well</div>
+          <div class="subtitle">Guru</div>
+        </div>
+      </div>
+      <div class="topbar-icons">
+        <p>+</p>
+        <div class="profile-icon"></div>
+      </div>
+    </div>
+
+    <!-- LAYOUT UTAMA -->
+    <div class="container">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <button>Beranda</button>
+        <button>Profile</button>
+        <button>FAQ</button>
+      </div>
+
+      <!-- MAIN LOGIN CONTENT -->
+      <div class="main-content">
+        <div class="login-card">
+          <img src="gambar/CapyBaraWisuda.png" alt="Capybara Wisuda" />
+          <p style="margin-top: 10px;">Task Well menemani kamu untuk membuat kelas dan menciptakan kelas yang menyenangkan!</p>
+
+          <div class="dropdown" id="email-dropdown">
+            <div class="dropdown-header" onclick="toggleDropdown()">
+              <span id="selected-email-label">MASUK</span>
+              <span id="arrow">▼</span>
+            </div>
+            <div class="dropdown-content" id="dropdown-content">
+              <div class="dropdown-option" onclick="selectEmail('')">
+                <span>(Tidak ada Email Terkait)</span>
+              </div>
+              <div class="dropdown-option" onclick="showAddEmailForm()">
+                ➕ Tambah Email
+              </div>
+            </div>
+          </div>
+
+          <div class="add-email-form" id="add-email-form">
+            <input type="email" id="new-email" placeholder="Masukkan email" />
+            <input type="password" id="new-password" placeholder="Masukkan password" />
+            <select id="role" name="role" required>
+              <option value="" disabled selected hidden>Pilih Role</option>
+              <option value="guru">Guru</option>
+              <option value="siswa">Siswa</option>
+          </select>
+
+</select>
+
+            <button onclick="masuk()">Masuk</button>
+          </div>
+
+          <button id="continue-btn" class="continue-btn" disabled onclick="location.href='./../Login/Karakter.html'">Lanjutkan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const dropdownContent = document.getElementById("dropdown-content");
+    const emailLabel = document.getElementById("selected-email-label");
+    const continueBtn = document.getElementById("continue-btn");
+    const addEmailForm = document.getElementById("add-email-form");
+    const dropdown = document.getElementById("email-dropdown");
+
+    function toggleDropdown() {
+      dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+      document.getElementById("arrow").textContent = dropdownContent.style.display === "block" ? "▲" : "▼";
+    }
+
+    function selectEmail(email) {
+      if (email === '') {
+        emailLabel.textContent = "MASUK";
+        continueBtn.disabled = true;
+        continueBtn.classList.remove("active");
+      } else {
+        emailLabel.textContent = email;
+        continueBtn.disabled = false;
+        continueBtn.classList.add("active");
+      }
+
+      dropdownContent.style.display = "none";
+    }
+
+    function showAddEmailForm() {
+      addEmailForm.style.display = "flex";
+      dropdown.style.display = "none";
+    }
+
+    function submitNewEmail() {
+      const newEmail = document.getElementById("new-email").value.trim();
+      const newPassword = document.getElementById("new-password").value.trim();
+
+      if (newEmail && newPassword) {
+        const option = document.createElement("div");
+        option.className = "dropdown-option";
+        option.onclick = () => selectEmail(newEmail);
+        option.innerHTML = `
+          <img src="gambar/Capybara.png" alt="Foto Profil" />
+          <div>
+            <div style="font-weight: bold;">${newEmail.split("@")[0]}</div>
+            <div style="font-size: 12px; color: gray;">${newEmail}</div>
+          </div>
+        `;
+        dropdownContent.insertBefore(option, dropdownContent.lastElementChild);
+
+        emailLabel.textContent = newEmail;
+        continueBtn.disabled = false;
+        continueBtn.classList.add("active");
+
+        addEmailForm.style.display = "none";
+        dropdown.style.display = "block";
+      }
+    }
+    
+    function masuk() {
+  const email = document.getElementById("new-email").value.trim();
+  const password = document.getElementById("new-password").value.trim();
+  const role = document.getElementById("role").value;
+
+  if (!email) {
+    alert("Email harus diisi!");
+    return;
+  }
+
+  if (!password) {
+    alert("Password harus diisi!");
+    return;
+  }
+
+  if (!role) {
+    alert("Role harus dipilih!");
+    return;
+  }
+
+  // Kalau semua sudah valid, redirect ke halaman sesuai role:
+  if (role === "guru") {
+    window.location.href = "berandaGuru.html";
+  } else if (role === "siswa") {
+    window.location.href = "./../Siswa/beranda_siswa.html";
+  }
+}
+
+
+
+  </script>
+</body>
+</html>

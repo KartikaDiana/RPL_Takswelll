@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Well - Pengumpulan Tugas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+ html, body {
+      overflow: hidden;
+    }
+    body {
+      background: url('Forum Halaman Kelas Siswa.png') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      height: 100vh;
+      transition: opacity 0.5s ease;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 60px auto;
+      background-color: #e5d2b7;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #a37555;
+      color: white;
+      text-align: center;
+      padding: 24px;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .form-content {
+      display: flex;
+      padding: 30px;
+      gap: 20px;
+    }
+
+    .left-section {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    textarea,
+    input[type="file"],
+    input[type="datetime-local"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1.5px solid #555;
+      font-size: 14px;
+    }
+
+    textarea::placeholder,
+    input::placeholder {
+      color: #aaa;
+      font-style: italic;
+    }
+
+    .file-input-wrapper {
+      position: relative;
+    }
+
+    .file-input-wrapper::before {
+      content: "\1F4C4";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .file-input-wrapper input[type="file"] {
+      padding-left: 30px;
+    }
+
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .datetime-input {
+      width: 60%;
+    }
+
+    .button-submit {
+      background-color: #80573c;
+      color: white;
+      padding: 10px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .button-submit:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+    .right-section {
+      flex: 1;
+      background-color: #f8f5f2;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .right-section h3 {
+      background-color: #d8c8b5;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .level-button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      color: white;
+      font-style: italic;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+.level-button.active.red {
+  background-color: #e64848;
+  color: white;
+}
+
+.level-button.active.blue {
+  background-color: #61b3e3;
+  color: white;
+}
+
+.level-button.active.green {
+  background-color: #4cd964;
+  color: white;
+}
+
+  .level-button:not(.active) {
+    background-color: #d3cfcf !important; /* abu-abu */
+    color: #555 !important;
+  }
+
+    .level-button.red { background-color: #e64848; }
+    .level-button.blue { background-color: #61b3e3; }
+    .level-button.green { background-color: #4cd964; }
+
+    .level-button.active {
+      box-shadow: 0 0 0 3px #44444455;
+      transform: scale(1.02);
+    }
+
+    .hidden {
+      display: none;
+}
+
+    @media screen and (max-width: 768px) {
+      .form-content {
+        flex-direction: column;
+      }
+
+      .bottom-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .datetime-input, .button-submit {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blur-layer"></div>
+
+  <div class="container" id="task-container">
+    <div class="header">
+      Siswa siap mengerjakan tantangan dari Anda.<br>
+      Jangan lupa berikan instruksi yang jelas dan deskripsi tugas yang lengkap ya, Guru Hebat!
+    </div>
+    <form id="task-form" enctype="multipart/form-data">
+      <!-- isi form sama seperti sebelumnya -->  
+      <div class="form-content">
+        <div class="left-section">
+          <textarea id="task-desc" name="description" rows="3" placeholder="Masukkan deskripsi tugas..."></textarea>
+    
+          <div class="file-input-wrapper">
+            <input type="file" id="task-file" name="taskfile" placeholder="Masukkan file bahan ajar...">
+          </div>
+          
+          <div class="bottom-row">
+            <input type="datetime-local" class="datetime-input" id="task-deadline" name="deadline" placeholder="Tetapkan Deadline">
+            <button class="button-submit" id="submit-btn" type="submit" disabled>kirim</button>
+          </div>
+        </div>
+    
+        <div class="right-section">
+          <h3>Level Tugas</h3>
+          <button type="button" class="level-button red" data-level="hard">Hard</button>
+          <button type="button" class="level-button blue" data-level="medium">Medium</button>
+          <button type="button" class="level-button green" data-level="easy">Easy</button>
+        </div>
+      </div>
+      <!-- Hidden input untuk level -->
+      <input type="hidden" name="level" id="task-level">
+    </form>
+    
+  </div>
+  <script>
+    const levelButtons = document.querySelectorAll('.level-button');
+    const descInput = document.getElementById('task-desc');
+    const fileInput = document.getElementById('task-file');
+    const deadlineInput = document.getElementById('task-deadline');
+    const submitBtn = document.getElementById('submit-btn');
+    const formContainer = document.getElementById('task-container');
+  
+    let selectedLevel = null;
+  
+    function validateForm() {
+      const isDescFilled = descInput.value.trim() !== '';
+      const isFileSelected = fileInput.files.length > 0;
+      const isDeadlineSet = deadlineInput.value !== '';
+      const isLevelChosen = selectedLevel !== null;
+  
+      if (isDescFilled && isFileSelected && isDeadlineSet && isLevelChosen) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.style.cursor = "pointer";
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = "0.6";
+        submitBtn.style.cursor = "not-allowed";
+      }
+    }
+  
+    // Event untuk semua input
+    descInput.addEventListener('input', validateForm);
+    fileInput.addEventListener('change', validateForm);
+    deadlineInput.addEventListener('input', validateForm);
+  
+    levelButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        levelButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        selectedLevel = button.textContent.trim().toLowerCase();
+        validateForm();
+      });
+    });
+  
+    // Tombol kirim ditekan
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // Cegah reload
+  
+      // Simulasi pengiriman data
+      alert('Tugas berhasil dikirim!');
+  
+      // Reset semua input
+      descInput.value = '';
+      fileInput.value = '';
+      deadlineInput.value = '';
+      levelButtons.forEach(btn => btn.classList.remove('active'));
+      selectedLevel = null;
+  
+      // Disable tombol kirim
+      validateForm();
+  
+      // Sembunyikan form / container
+      formContainer.style.display = 'none';
+  
+      // Scroll ke atas biar keliatan background
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+  
+</body>
+</html>

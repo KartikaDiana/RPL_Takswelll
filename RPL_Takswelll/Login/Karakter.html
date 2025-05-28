@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pilih Karakter - TaskWell</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jomhuria&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Karakter.css" />
+</head>
+<body>
+<div class="overlay"></div>
+
+  <!-- Header dengan judul dan icon -->
+  <div class="topbar">
+   <div class="topbar-left">
+  <p class="menu-icon">☰</p>
+  <div class="logo"></div>
+  <div class="logo-text-group">
+    <div class="app-title">
+      Task Well
+      <div class="logo-small"></div>
+    </div>
+    <div class="subtitle">Guru</div>
+  </div>
+</div>
+
+    <div class="topbar-icons">
+      <p>+</p>
+      <div class="profile-icon">Login</div>
+    </div>
+  </div>
+
+  <!-- Konten utama -->
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button class="disable-button">Beranda</button>
+      <button class="disable-button">Profile</button>
+      <button class="disable-button">Tambahkan Tugas</button>
+      <button class="disable-button">FAQ</button>
+    </div>
+
+    <!-- Area konten -->
+    <div class="main-content">
+    <div class="card-container">
+  <!-- Card GURU -->
+  <div class="card">
+    <div class="card-image guru"></div>
+    <p class="card-text">
+      Membuat, menerima, mengatur jenis dan menilai adalah bagian dari konsep pengajaran guru!
+    </p>
+    <h2>GURU</h2>
+    <button onclick="location.href='./../Guru/berandaGuru.html'">Lanjutkan</button>
+
+  </div>
+
+  <!-- Card SISWA -->
+  <div class="card">
+    <div class="card-image siswa"></div>
+    <p class="card-text">
+      Belajar, mengirim, menerima jenis, mengumpulkan tugas dan mendapatkan nilai adalah bagian dari konsep siswa!
+    </p>
+    <h2>SISWA</h2>
+    <a href="./../Siswa/Beranda_siswa.html" class="btn-link"><button>Lanjutkan</button></a>
+
+  </div>
+</div>
+
+      <!-- Tambahkan konten utama di sini -->
+    </div>
+  </div>
+
+</body>
+</html>

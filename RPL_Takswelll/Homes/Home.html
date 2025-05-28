@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Well</title>
+  <link rel="stylesheet" href="Home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jomhuria&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <img src="Asset/Logo.png" alt="Capybara" />
+        <h1>Task Well</h1>
+      </div>
+      <nav>
+        <a href="#why-us" class="nav-btn klik-bunyi">Keunggulan</a>
+        <a href="#deskripsi" class="nav-btn klik-bunyi">Tentang Kami</a>
+        <button class="login-btn klik-bunyi" onclick="window.location.href='./../Guru/login.html'">LOGIN</button>
+      </nav>
+    </div>
+  </header>
+  <section class="hero-section">
+  <button id="play-music">Start!</button>
+
+<audio id="musik" loop>
+  <source src="Asset/musik.mp3" type="audio/mpeg" />
+  Browser kamu tidak mendukung audio.
+</audio>
+
+
+  <img src="Asset/Slide1.png" class="hero-img" />
+</section>
+
+  <section class="why-us" id="why-us">
+  <div class="why-us-header">
+  <img src="Asset/Logocapy.png" class="capy-logo" />
+  <h2>Kenapa memilih kami?</h2>
+</div>
+  <p class="section-subtitle">Untuk meraih ilmu dan akumulasi tugas yang baik, kita butuh kelas nih! Yuk kita masuk kelas nya!</p>
+
+  <div class="why-us-container">
+    <div class="card-box">
+      <img src="Asset/Bearmakan.png" alt="bear makan">
+      <p class="card-description">Tidak sembarangan memberikan tugas, gurumu harus paham tingkatan tugas utamamu!</p>
+      <div class="card-label">Level Pengerjaan Tugas</div>
+    </div>
+
+    <div class="card-box">
+      <img src="Asset/Bearbingung.png" alt="bear bingung">
+      <p class="card-description">Bingung nih, semua tugas ke data berapa banyak sih atau modul belajar dari guruku tidak ya?</p>
+      <div class="card-label">Batas Total Tugas</div>
+    </div>
+
+    <div class="card-box">
+      <img src="Asset/Bearcinta.png" alt="bear cinta">
+      <p class="card-description">Meningkatkan semangat mengerjakan tugas karena punya peliharaan!</p>
+      <div class="card-label">Hewan Peliharaan (Capybara)</div>
+    </div>
+  </div>
+</section>
+
+<section class="tutorial-section">
+  <div class="tutorial-container">
+    <div class="tutorial-left">
+      <h3>Guru</h3>
+      <video autoplay muted loop controls width="100%" src="Asset/GuruRecord.mp4" type="video/mp4"></video>
+    </div>
+    <div class="tutorial-center">
+      <img src="Asset/LampCapy.png" alt="Gambar Tengah" />
+      <p class="tutorial-title">Tutorial</p>
+  <p class="tutorial-subtext">Sebelum kita mulai aplikasinya, kita lihat dulu yuk cara penggunaannya! kamu bisa jadi guru sekaligus jadi siswa loh!</p>
+    </div>
+    <div class="tutorial-right">
+      <h3>Siswa</h3>
+      <video autoplay muted loop controls width="100%" src="Asset/SiswaRecord.mp4" type="video/mp4"></video>
+    </div>
+  </div>
+</section>
+
+
+  <section class="section-aplikasi">
+  <div class="left-content">
+    <h2 class="bold-itali">Telusuri aplikasi hari ini dan belajar!</h2>
+    <p class="medium-text">Tugas hari ini udah siap! Yuk mulai sekarang dan selesaikan semuanya sebelum malam!</p>
+    <button class="login-btn klik-bunyi" onclick="window.location.href='./../Guru/login.html'">Go To Login</button>
+  </div>
+  <div class="right-images">
+    <img src="Asset/Aplikasi1.png" alt="Gambar 1" />
+    <img src="Asset/Aplikasi2.png" alt="Gambar 2" />
+  </div>
+</section>
+
+
+  <section class="desain-wrapper">
+  <div class="desain">
+  <div class="gambar-kiri">
+  <img src="Asset/karakterutama.png" alt="Karakter Utama" class="gambar-besar" />
+</div>
+      <div>
+      <div class="konten-kanan">
+  <div class="gambar-empat">
+    <img src="Asset/Karakter1.png" />
+    <img src="Asset/Karakter2.png" />
+    <img src="Asset/Karakter3.png" />
+    <img src="Asset/Karakter4.png" />
+  </div>
+  <div id="deskripsi" class="deskripsi">
+    <div class="box">
+      <h2 class="bold-italic">Desain Strategis</h2>
+      <p>dibungkus dengan nuansa coklat hangat seperti capybara santai, biar murid tetap semangat ngerjain tugas sambil merasa prosesnya asyik dan gak ngebosenin.</p>
+    </div>
+    <div class="box">
+      <h2 class="bold-italic">Tema</h2>
+      <p>Perencanaan besar yang disampaikan secara ringan untuk membangkitkan semangat belajar murid.</p>
+    </div>
+  </div>
+  </div>
+</div>
+</section>
+
+ <footer>
+  <div class="footer-content">
+    <div>
+      <h4>Produk</h4>
+      <ul>
+        <li>Level Tugas Dinamis</li>
+        <li>Pengumpulan Tugas</li>
+        <li>Penerimaan Tugas</li>
+        <li>Akumulasi Tugas</li>
+        <li>Hewan Peliharaan</li>
+        <li>Profile Pribadi</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Bisnis</h4>
+      <p>Team kami menyepakati bisnis ini bersifat private sementara dan ada waktu khusus untuk terbuka secara umum</p>
+    </div>
+    <div>
+      <h4>Info Bisnis</h4>
+      <p>Kritis Capybara<br>Kontak Kami<br>(+62 89524680547)</p>
+    </div>
+    <div>
+      <h4>Ikuti kami</h4>
+      <div class="sosmed-icons">
+        <a href="#"><img src="Asset/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="Asset/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="Asset/youtube.png" alt="YouTube" /></a>
+      </div>
+    </div>
+  </div>
+  <p class="copyright">© 2025 Kritis Capybara. All rights reserved.</p>
+</footer>
+  <audio id="audioClick" src="Asset/cetut.mp3" preload="auto"></audio>
+<script>
+  // Nonaktifkan scroll behavior saat reload
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
+
+  // Aktifkan smooth scroll SETELAH halaman selesai dimuat
+  window.addEventListener("load", function () {
+    document.documentElement.style.scrollBehavior = "smooth";
+  });
+
+  const btn = document.getElementById('play-music');
+  const musik = document.getElementById('musik');
+
+  btn.addEventListener('click', () => {
+    musik.play();
+    btn.style.display = 'none'; // sembunyikan tombol setelah klik
+  });
+
+  const audio = document.getElementById('audioClick');
+
+  const clickableElements = document.querySelectorAll('.klik-bunyi');
+  clickableElements.forEach(el => {
+    el.addEventListener('click', () => {
+      audio.currentTime = 0;
+      audio.play();
+    });
+  });
+</script>
+
+
+
+
+</body>
+</html>
