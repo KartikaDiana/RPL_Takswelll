@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beranda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Jomhuria&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-image: url('gambar/download.svg');
+      overflow: auto;
+    }
+
+    .topbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f7ecd9;
+      border-bottom: 1px solid #d4c0a5;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 55px;
+      background-image: url('gambar/logoo.png');
+      background-size: cover;
+    }
+
+    .app-title {
+      font-size: 50px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-top: 12px;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      color: #333;
+      margin-top: -13px;
+      line-height: 1;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .topbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-icons p,
+    .profile-icon {
+      font-size: 50px;
+      cursor: pointer;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background-image: url('gambar/logoo.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      border: 1px solid #000;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      flex-grow: 1;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .container.sidebar-hidden {
+      grid-template-columns: 0 1fr;
+    }
+
+    .sidebar {
+      background-color: #f3e4ce;
+      width: 220px;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      border-right: 1px solid #d4c0a5;
+      transition: transform 0.3s ease;
+      transform: translateX(0);
+    }
+
+    .sidebar.hidden {
+      transform: translateX(-100%);
+    }
+
+    .sidebar button {
+      width: 100%;
+      font-size: 25px;
+      background-color: #e3d0b7;
+      border: none;
+      padding: 8px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .sidebar button:hover {
+      background-color: #d4b999;
+    }
+
+    .a-navbar {
+  color: black;
+  text-decoration: none;
+  display: center; /* Agar memenuhi tombol */
+  width: 100%;
+  height: 100%;
+}
+
+
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 0;
+    width: 100%;
+    color: #000000;
+    cursor: pointer;
+justify-content: center;  
+    display: flex;
+    align-items: center;      /* ini buat vertikal center */
+  text-align: center; 
+
+}
+
+  button:hover {
+    background-color: #495057;
+  }
+
+    .pet-image {
+      width: 120px;
+      height: 120px;
+      background-image: url('./gambar/pet.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 2px;
+    }
+
+    #menuToggle {
+      font-size: 35px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      overflow-y: auto;
+    }
+
+    .card {
+      max-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #fff7ed;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-avatar {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 80px;
+      background-size: 110px;
+      background-position: center;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+    }
+
+    .card img.cover {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background-color: #e0d4c6;
+    }
+
+    .card .info {
+      padding: 15px;
+    }
+
+    .card .info p {
+      font-size: 13px;
+      color: #5a4b42;
+      margin-bottom: 4px;
+    }
+
+    .card .info h3 {
+  margin-top: 20px;
+  font-size: 30px;
+  font-family: 'Jomhuria', cursive;
+  letter-spacing: 1.2px;
+  color: black; /* Menjadikan teks hitam */
+  text-decoration: none; /* Menghilangkan underline */
+}
+
+
+    /* Tambahan baru */
+    .sidebar-courses {
+      margin-top: 2px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+
+    .course-button {
+      background-color: #e3d0b7;
+      color: #000;
+      font-size: 10px;
+      text-align: left;
+      padding: 10px 20px;
+      width: 100%;
+      height: 80%;
+      border-radius: 40px;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.3;
+    }
+
+    .course-button:hover {
+  background-color: #d4b999;  /* warna berubah saat hover 
+}
+    .sidebar-divider {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  margin: 10px 0;
+  height: 0;
+  display: block;
+}
+
+.container.sidebar-hidden {
+  grid-template-columns: 0 1fr;
+}
+
+.pet-image {
+  width: 120px;
+  height: 120px;
+  background-image: url('./gambar/pet.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 2px;
+  transition: transform 0.3s ease; /* tambahkan transisi agar animasi halus */
+}
+
+.pet-image:hover {
+  transform: scale(1.1) rotate(5deg); /* zoom 110% dan rotate 5 derajat */
+  cursor: pointer; /* agar kursor berubah saat hover */
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-left">
+      <p id="menuToggle">☰</p>
+      <div class="logo"></div>
+      <div>
+        <div class="app-title">Task Well</div>
+        <div class="subtitle">Siswa</div>
+      </div>
+    </div>
+
+    <div class="topbar-icons">
+    <a href="#" 
+   class="tambah-kelas" 
+   style="text-decoration: none; color: black; font-weight: bold;" 
+   onclick="logout()">Logout</a>
+      <a href="PBKelas.html" class="tambah-kelas" style="text-decoration: none; color: black; font-weight: bold;" onclick="tampilkanTombol()">+</a>
+      <div class="profile-icon"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <a href="pet_siswa.html"><div class="pet-image"></div></a> 
+      <button> <a href="Beranda_siswa.html" class="a-navbar">Beranda</a></button>
+      <button> <a href="TingkatanTugas.html" class="a-navbar">Tingkatan Tugas</a></button>
+      <button> <a href="profil_siswa.html" class="a-navbar">Profil</a></button>
+      <button> <a href="FAQ.html" class="a-navbar">FAQ</a></button>
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-courses">
+          <a href="BerandaKurpem.html" class="a-navbar">
+          <div class="course-button">
+            <strong>KURIKULUM PEMBELAJARAN</strong><br>
+            <small>Guru. Kartika Diana</small>
+            </a>
+          </div>
+           <a href="BerandaAlpro.html" class="a-navbar">
+           <div class="course-button">
+            <strong>ALGORITMA PEMROGRAMAN</strong><br>
+            <small>Guru. Alya Nurul Hanifah</small>
+            </a>
+          </div>
+        </div>
+    </div>
+
+  <div class="main-content">
+  <a href="BerandaKurpem.html" class="card" style="text-decoration: none; color: inherit;">
+    <div class="card-avatar" style="background-image: url('gambar/icon_beranda.png');"></div>
+    <img class="cover" src="gambar/books.png" alt="Kurikulum">
+    <div class="info">
+      <p>Guru, Kartika Diana<br>Semester 4 - 2024</p>
+      <h3>KURIKULUM PEMBELAJARAN</h3>
+    </div>
+  </a>
+
+  <a href="BerandaAlpro.html" class="card" style="text-decoration: none; color: inherit;">
+    <div class="card-avatar" style="background-image: url('gambar/icon_beranda2.png');"></div>
+    <img class="cover" src="gambar/rumus.png" alt="Algoritma">
+    <div class="info">
+      <p>Guru, Alya Nurul Hanifah<br>Semester 4 - 2024</p>
+      <h3>ALGORITMA PEMROGRAMAN</h3>
+    </div>
+  </a>
+</div>
+
+  
+
+  <script>
+  document.getElementById('menuToggle').addEventListener('click', function () {
+    const sidebar = document.getElementById('sidebar');
+    const container = document.querySelector('.container');
+    sidebar.classList.toggle('hidden');
+    container.classList.toggle('sidebar-hidden');
+  });
+
+  function logout() {
+    alert("Anda berhasil logout.");
+    setTimeout(function () {
+      window.location.href = "./../Guru/login.html";
+    }, 1000); // Delay pendek agar alert ditutup dulu
+  }
+
+</script>
+
+</body>
+</html>

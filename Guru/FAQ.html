@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Well - FAQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    body {
+      background-image: url('gambar/Background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: opacity 0.5s ease;
+    }
+
+    .topbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f7ecd9;
+      border-bottom: 1px solid #d4c0a5;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 55px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+    }
+
+    .app-title {
+      font-size: 50px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-top: 12px;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      color: #333;
+      margin-top: -13px; /* Atau bisa juga pakai margin-top: 2px; sesuai kebutuhan */
+      line-height: 1; /* Tambahan untuk memperkecil jarak vertikal */
+      font-family: 'Jomhuria', cursive;
+
+    }
+
+
+    .topbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-icons p,
+    .profile-icon {
+      font-size: 50px;
+      cursor: pointer;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      border: 1px solid #000;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      flex-grow: 1;
+      transition: all 0.3s ease;
+    }
+
+    .container.sidebar-hidden {
+      grid-template-columns: 0 1fr;
+    }
+
+
+    /* Ikon menu ☰ */
+    #menuToggle {
+      font-size: 35px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .sidebar {
+      background-color: #f3e4ce;
+      width: 220px;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      border-right: 1px solid #d4c0a5;
+      transition: transform 0.3s ease;
+      transform: translateX(0);
+    }
+
+    /* Animasi sidebar */
+    .sidebar {
+      transition: transform 0.3s ease;
+      transform: translateX(0); /* Tampil */
+    }
+
+    .sidebar.hidden {
+      transform: translateX(-100%); /* Geser keluar layar */
+    }
+
+    .sidebar button {
+      width: 100%;
+      font-size: 25px;
+      background-color: #e3d0b7;
+      border: none;
+      padding: 8px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .sidebar button:hover {
+      background-color: #d4b999;
+    }
+    .main-content {
+      flex-grow: 1;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .faq {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .faq-item {
+      background-color: #dfcfba;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+      border: 1px solid #333;
+      font-family: 'Jomhuria', cursive;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question {
+      font-weight: normal;
+      padding: 15px 20px;
+      font-size: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid #333;
+      font-family: 'Jomhuria', cursive;
+      font-style: normal;
+    }
+
+    .faq-answer {
+      background-color: #f7f2ea;
+      letter-spacing: 1px;
+      padding: 0 20px;
+      font-size: 21px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      font-weight: normal;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 15px 20px;
+      max-height: 300px;
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Tambahan baru */
+    .sidebar-courses {
+      margin-top: 5px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      padding-bottom: 140px;
+    }
+
+    .course-button {
+      background-color: #d4c0a5;
+      color: #000;
+      font-size: 20px;
+      text-align: left;
+      padding: 10px 20px;
+      width: 100%;
+      height: 80%;
+      border-radius: 40px;
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+      font-family: 'Jomhuria', cursive;
+      line-height: 1;
+      letter-spacing: 1px; 
+    }
+
+    .sidebar-divider {
+      width: 100%;
+      border: none;
+      height: 1px;
+      background-color: #c9b9a5;
+      margin: 10px 0;
+    }
+
+    .sub-btn {
+      text-decoration: none;
+      color: black;
+    }
+
+    .a-navbar {
+      text-decoration: none;
+          color: black;
+    }
+    .course-button:hover {
+      background-color: #d4b999;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-left">
+      <p id="menuToggle">☰</p>
+      <div class="logo"></div>
+      <div>
+        <div class="app-title">Task Well</div>
+        <div class="subtitle">Guru</div>
+      </div>
+    </div>
+
+    <div class="topbar-icons">
+      <a href="isikelasguru.html" class="tambah-kelas" style="text-decoration: none; color: black; font-weight: bold;" onclick="tampilkanTombol()">+</a>
+      <div class="profile-icon"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <button><a href="berandaGuru.html" class="a-navbar">Beranda</a></button>
+      <button><a href="profile.html" class="a-navbar">Profile</a></button>
+      <button><a href="FAQ.html" class="a-navbar">FAQ</a></button>
+      
+    
+    <!-- Garis pemisah -->
+    <hr class="sidebar-divider">
+
+    <!-- Tambahan: Course List di kiri bawah -->
+    <div class="sidebar-courses">
+      <div class="course-button">
+        <a href="forum.html" class="sub-btn" style="text-decoration: none;">
+            KURIKULUM PEMBELAJARAN <div><small>Semester 4 • 2024</small></div>
+          </a>
+        </div>
+        <div class="course-button">
+         <a href="forumalpro.html" class="sub-btn" style="text-decoration: none;">
+          ALGORITMA PEMROGRAMAN <div><small>Semester 4 • 2024</small></div>
+        </a>
+      </div>
+    </div>
+    </div>
+
+    <div class="main-content">
+      <div class="faq">
+        <div class="faq-item active">
+          <div class="faq-question">
+            Bagaimana jika tidak mengumpulkan tugas?
+            <span class="arrow">▾</span>
+          </div>
+          <div class="faq-answer">
+            Pada TaskWell ini, terdapat fitur pet untuk menjaga tugas selalu dikerjakan. Apabila tidak dikerjakan, maka pet yang tersedia akan mati. Namun apabila ada tugas lainnya/sebelumnya dikerjakan, pet akan hidup kembali.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Berapa batas tugas yang bisa di berikan?
+            <span class="arrow">▾</span>
+          </div>
+          <div class="faq-answer">
+            Batas tugas tergantung pada pengaturan guru. Namun secara umum, tidak lebih dari 5 tugas dalam satu minggu.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Siapa saja yang bisa menggunakan TaskWell?
+            <span class="arrow">▾</span>
+          </div>
+          <div class="faq-answer">
+            TaskWell dapat digunakan oleh siswa dan guru dalam ekosistem pembelajaran sekolah.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Apa maksud dari level tugas?
+            <span class="arrow">▾</span>
+          </div>
+          <div class="faq-answer">
+            Level tugas menunjukkan tingkat kesulitan dan urgensi dari tugas yang diberikan.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    document.getElementById('menuToggle').addEventListener('click', function () {
+      const sidebar = document.getElementById('sidebar');
+      const container = document.getElementById('mainContainer');
+      sidebar.classList.toggle('hidden');
+      container.classList.toggle('sidebar-hidden');
+    });
+  </script>
+</body>
+</html>

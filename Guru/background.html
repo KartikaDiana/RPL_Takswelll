@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BACKGROUND - BURAM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #f7ecd9, #e6d4b4);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Jomhuria', cursive;
+      
+    }
+
+    .topbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      border-bottom: 1px solid #d4c0a5;
+      background-color: #f7ecd9;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-icon {
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: 10px;
+      user-select: none;
+    }
+
+    .logo {
+      width: 60px;
+      height: 55px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+    }
+
+    .app-title {
+      font-size: 45px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      margin-top: -10px;
+      color: #333;
+    }
+
+    .topbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-icons p,
+    .profile-icon {
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #b79c7a;
+      border-radius: 50%;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+      border: 1px solid #000;
+    }
+
+    .container {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    .sidebar {
+      background-color: #f3e4ce;
+      width: 220px;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border-right: 1px solid #d4c0a5;
+      align-items: center;
+    }
+
+    .sidebar-logo-only {
+      width: 80px;
+      height: 80px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .sidebar button {
+      background-color: #e3d0b7;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 20px;
+      font-size: 25px; /* DIBESARKAN */
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.2s ease;
+      font-family: 'Jomhuria', cursive;
+      width: 100%;
+    }
+
+    .sidebar button:hover {
+      background-color: #d4b999;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header dengan judul dan icon -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <p class="menu-icon">☰</p>
+      <div class="logo"></div>
+      <div>
+        <div class="app-title">Task Well</div>
+        <div class="subtitle">Guru</div>
+      </div>
+    </div>
+    <div class="topbar-icons">
+      <a href="isikelasguru.html" class="tambah-kelas" onclick="tampilkanTombol()">+</a>
+      <div class="profile-icon"></div>
+    </div>
+  </div>
+
+  <!-- Konten utama -->
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button>Beranda</button>
+      <button>Profile</button>
+      <button>FAQ</button>
+    </div>
+
+    <!-- Area konten -->
+    <div class="main-content">
+      <!-- Tambahkan konten utama di sini -->
+    </div>
+  </div>
+</body>
+</html>

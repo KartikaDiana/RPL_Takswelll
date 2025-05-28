@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('gambar/Background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: 'Jomhuria', cursive;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: opacity 0.5s ease;
+    }
+
+    .topbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f7ecd9;
+      border-bottom: 1px solid #d4c0a5;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 55px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+    }
+
+    .app-title {
+      font-size: 50px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-top: 13px;
+
+    }
+
+    .subtitle {
+      font-size: 28px;
+      color: #333;
+      margin-top: -13px; /* Atau bisa juga pakai margin-top: 2px; sesuai kebutuhan */
+      line-height: 1; /* Tambahan untuk memperkecil jarak vertikal */
+    }
+
+    .topbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-icons p,
+    .profile-icon {
+      font-size: 50px;
+      cursor: pointer;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background-image: url('gambar/Capybara.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      border: 1px solid #000;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      flex-grow: 1;
+      transition: all 0.3s ease;
+    }
+
+    .container.sidebar-hidden {
+      grid-template-columns: 0 1fr;
+    }
+
+    /* Ikon menu ☰ */
+    #menuToggle {
+      font-size: 35px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .sidebar {
+      background-color: #f3e4ce;
+      width: 220px;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      border-right: 1px solid #d4c0a5;
+    }
+
+    /* Animasi sidebar */
+    .sidebar {
+      transition: transform 0.3s ease;
+      transform: translateX(0); /* Tampil */
+    }
+
+    .sidebar.hidden {
+      transform: translateX(-100%); /* Geser keluar layar */
+    }
+
+    .sidebar button {
+      width: 100%;
+      font-size: 25px;
+      background-color: #e3d0b7;
+      border: none;
+      padding: 8px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Jomhuria', cursive;
+    }
+
+    .sidebar button:hover {
+      background-color: #d4b999;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 5px 10px 5px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main-content {
+      transition: margin 0.3s ease;
+    }
+
+
+    .profile-wrapper {
+      text-align: center;
+    }
+
+    .profile-pictures {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      overflow-x: hidden; /* ganti dari 'auto' jadi 'hidden' */
+    }
+
+    .profile-pictures img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: transform 0.3s, border-color 0.3s;
+      background-color: white; /* Default */
+    }
+
+    .profile-pictures img:hover {
+      transform: scale(1.1);
+    }
+
+    .profile-pictures img.active {
+      border-color: #333;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #000;
+      background-size: cover;
+      background-position: center;
+      margin: 10px auto;
+      background-color: white; /* default background */
+    }
+
+    .color-palette-wrapper {
+      background-color: #d4b999; /* Warna coklat lembut */
+      padding: 1px;
+      border-radius: 15px;
+      border: 2px solid #b89c79;
+      display: inline-block;
+      margin: 5px 0;
+      justify-content: center;
+      display: flex;
+    }
+
+
+    .color-palette {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .color-palette div {
+      width: 60px;
+      height: 30px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid #aaa;
+    }
+
+    .bio-wrapper {
+      background-color: #d4b999;
+      padding: 10px;
+      border-radius: 15px;
+      border: 2px solid #b89c79;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px auto;
+    }
+
+    .bio-input {
+      width: 300px;
+      height: 100px;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      font-size: 20px;
+      font-family: 'Jomhuria', cursive;
+      resize: none;
+      text-align: center;
+    }
+
+    .name-edit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 32px;
+    }
+
+   /* Tambahan baru */
+    .sidebar-courses {
+      margin-top: 5px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      padding-bottom: 320px;
+    }
+
+    .course-button {
+      background-color: #d4c0a5;
+      color: #000;
+      font-size: 20px;
+      text-align: left;
+      padding: 10px 20px;
+      width: 100%;
+      height: 80%;
+      border-radius: 40px;
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+      font-family: 'Jomhuria', cursive;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .course-button:hover {
+      background-color: #d4b999;
+    }
+    .sidebar-divider {
+      width: 100%;
+      border: none;
+      height: 1px;
+      background-color: #c9b9a5;
+      margin: 10px 0;
+    }
+
+    .sub-btn {
+      text-decoration: none;
+      color: black;
+    }
+
+    .a-navbar {
+      text-decoration: none;
+          color: black;
+    }
+
+    #saveBtn {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 22px;
+      font-family: 'Jomhuria', cursive;
+      border: none;
+      border-radius: 15px;
+      background-color: #b89c79;
+      color: white;
+      cursor: not-allowed;
+      opacity: 0.5;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+    }
+
+    #saveBtn.enabled {
+      cursor: pointer;
+      opacity: 1;
+      background-color: #5e61e6;
+      color: white;
+    }
+  </style>
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-left">
+      <p id="menuToggle">☰</p> <!-- Tambahkan ini -->
+      <div class="logo"></div>
+      <div>
+        <div class="app-title">Task Well</div>
+        <div class="subtitle">Guru</div>
+      </div>
+    </div>
+
+    <div class="topbar-icons">
+    <a href="isikelasguru.html" class="tambah-kelas" style="text-decoration: none; color: black; font-weight: bold;" onclick="tampilkanTombol()">+</a>
+
+      <div class="profile-icon" id="topbarProfileIcon"></div>
+      <span id="topbarProfileName" style="font-family: 'Jomhuria', cursive; font-size: 20px; margin-left: 10px;">Auwliya</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <button><a href="berandaGuru.html" class="a-navbar">Beranda</a></button>
+      <button><a href="profile.html" class="a-navbar">Profile</a></button>
+      <button><a href="FAQ.html" class="a-navbar">FAQ</a></button>
+
+      <!-- Garis pemisah -->
+      <hr class="sidebar-divider">
+
+      <!-- Tambahan: Course List di kiri bawah -->
+      <div class="sidebar-courses">
+        <div class="course-button">
+          <a href="forum.html" class="sub-btn" style="text-decoration: none;">
+            KURIKULUM PEMBELAJARAN <div><small>Semester 4 • 2024</small></div>
+          </a>
+        </div>
+        <div class="course-button">
+          <a href="forumalpro.html" class="sub-btn" style="text-decoration: none;">
+            ALGORITMA PEMROGRAMAN <div><small>Semester 4 • 2024</small></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="profile-image" id="profileImage"></div>
+      <div class="name-edit">
+        <span id="username">Auwliya</span>
+        <img id="editIcon" src="gambar/pencil.png" alt="Edit" style="width: 24px; height: 24px; cursor: pointer;" onclick="editName()">
+      </div>
+
+      <div class="profile-wrapper">
+        <div class="profile-pictures" id="characterList">
+          <img src="gambar/anduk.png" onclick="setProfileImage(this)">
+          <img src="gambar/memasak.png" onclick="setProfileImage(this)">
+          <img src="gambar/kapensil.png" onclick="setProfileImage(this)">
+          <img src="gambar/drink.png" onclick="setProfileImage(this)">
+          <img src="gambar/tidur.png" onclick="setProfileImage(this)">
+        </div>
+        <div class="color-palette-wrapper">
+          <div class="color-palette">
+            <div style="background-color: white" onclick="changeBgColor('white')"></div>
+            <div style="background-color: #ea5959" onclick="changeBgColor('#ea5959')"></div>
+            <div style="background-color: #5e61e6" onclick="changeBgColor('#5e61e6')"></div>
+            <div style="background-color: #f1da59" onclick="changeBgColor('#f1da59')"></div>
+            <div style="background-color: #e86fd0" onclick="changeBgColor('#e86fd0')"></div>
+          </div>
+        </div>
+        <div class="bio-wrapper">
+          <input class="bio-input" placeholder="Masukkan bio...">
+        </div>
+
+        <!-- Tombol Save -->
+        <button id="saveBtn" disabled>Save</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  let selectedColor = "white";
+  let selectedProfileSrc = ''; // untuk simpan foto terpilih
+  let nameChanged = false;
+  let bioChanged = false;
+
+  const profileImage = document.getElementById('profileImage');
+  const profileIconTopbar = document.getElementById('topbarProfileIcon');
+  const topbarProfileName = document.getElementById('topbarProfileName');
+  const saveBtn = document.getElementById('saveBtn');
+  const bioInput = document.querySelector('.bio-input');
+
+  // Fungsi set foto profil
+  function setProfileImage(imgElement) {
+    selectedProfileSrc = imgElement.src;
+    profileImage.style.backgroundImage = `url('${selectedProfileSrc}')`;
+    profileImage.style.backgroundColor = selectedColor;
+
+    document.querySelectorAll('#characterList img').forEach(img => img.classList.remove('active'));
+    imgElement.classList.add('active');
+
+    enableSave();
+  }
+
+  // Fungsi ganti background warna foto profil
+  function changeBgColor(color) {
+    selectedColor = color;
+    profileImage.style.backgroundColor = selectedColor;
+    document.querySelectorAll('#characterList img').forEach(img => {
+      img.style.backgroundColor = color;
+    });
+
+    enableSave();
+  }
+
+  // Fungsi edit nama
+  function editName() {
+    const nameContainer = document.querySelector('.name-edit');
+    const currentName = document.getElementById('username').textContent;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = currentName;
+    input.id = 'nameInput';
+    input.style.fontSize = '28px';
+    input.style.fontFamily = "'Jomhuria', cursive";
+    input.style.border = '1px solid #aaa';
+    input.style.borderRadius = '6px';
+    input.style.padding = '2px 6px';
+    input.style.width = '120px';
+
+    nameContainer.replaceChild(input, document.getElementById('username'));
+
+    input.focus();
+
+    const icon = document.getElementById('editIcon');
+    icon.style.display = 'none';
+
+    input.addEventListener('input', () => {
+      nameChanged = true;
+      enableSave();
+    });
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        saveName();
+      }
+    });
+
+    input.addEventListener('blur', saveName);
+
+    function saveName() {
+      const newName = input.value.trim() || "Auwliya";
+      const nameSpan = document.createElement('span');
+      nameSpan.id = 'username';
+      nameSpan.textContent = newName;
+
+      nameContainer.replaceChild(nameSpan, input);
+      icon.style.display = 'inline-block';
+
+      if (nameChanged) enableSave();
+    }
+  }
+
+  // Handle bio input perubahan
+  bioInput.addEventListener('input', () => {
+    bioChanged = true;
+    enableSave();
+  });
+
+  // Tombol Save aktif kalau ada perubahan
+  function enableSave() {
+    if (selectedProfileSrc || nameChanged || bioChanged || selectedColor !== 'white') {
+      saveBtn.disabled = false;
+      saveBtn.classList.add('enabled');
+      saveBtn.style.cursor = 'pointer';
+    } else {
+      saveBtn.disabled = true;
+      saveBtn.classList.remove('enabled');
+      saveBtn.style.cursor = 'not-allowed';
+    }
+  }
+
+  // Simpan data ke localStorage dan update UI topbar
+  saveBtn.addEventListener('click', () => {
+    if (saveBtn.disabled) return;
+
+    const nameEl = document.getElementById('username');
+    const name = nameEl ? nameEl.textContent : 'Auwliya';
+    const bio = bioInput.value;
+
+    // Simpan ke localStorage
+    localStorage.setItem('profileImage', selectedProfileSrc);
+    localStorage.setItem('profileBgColor', selectedColor);
+    localStorage.setItem('profileName', name);
+    localStorage.setItem('profileBio', bio);
+
+    // Update topbar profile
+    updateTopbarProfile(selectedProfileSrc, selectedColor, name);
+
+    // Reset flags
+    nameChanged = false;
+    bioChanged = false;
+    enableSave();
+    alert('Profil berhasil disimpan!');
+  });
+
+  // Update tampilan profile di pojok kanan atas
+  function updateTopbarProfile(imgSrc, bgColor, name) {
+    if (imgSrc) {
+      profileIconTopbar.style.backgroundImage = `url('${imgSrc}')`;
+      profileIconTopbar.style.backgroundColor = bgColor;
+    }
+    topbarProfileName.textContent = name;
+  }
+
+  // Load data dari localStorage saat halaman dibuka
+  function loadProfileData() {
+    const savedImage = localStorage.getItem('profileImage');
+    const savedBgColor = localStorage.getItem('profileBgColor');
+    const savedName = localStorage.getItem('profileName');
+    const savedBio = localStorage.getItem('profileBio');
+
+    if (savedImage) {
+      selectedProfileSrc = savedImage;
+      profileImage.style.backgroundImage = `url('${savedImage}')`;
+      profileIconTopbar.style.backgroundImage = `url('${savedImage}')`;
+
+      // Tandai gambar aktif di pilihan
+      document.querySelectorAll('#characterList img').forEach(img => {
+        if (img.src === savedImage) {
+          img.classList.add('active');
+          img.style.backgroundColor = savedBgColor || 'white';
+        } else {
+          img.classList.remove('active');
+          img.style.backgroundColor = savedBgColor || 'white';
+        }
+      });
+    }
+
+    if (savedBgColor) {
+      selectedColor = savedBgColor;
+      profileImage.style.backgroundColor = selectedColor;
+      profileIconTopbar.style.backgroundColor = selectedColor;
+    }
+
+    if (savedName) {
+      document.getElementById('username').textContent = savedName;
+      topbarProfileName.textContent = savedName;
+    }
+
+    if (savedBio) {
+      bioInput.value = savedBio;
+    }
+  }
+
+  // Jalankan saat load halaman
+  window.onload = () => {
+    loadProfileData();
+    enableSave();
+  }
+</script>

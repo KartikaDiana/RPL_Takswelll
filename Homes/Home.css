@@ -1,0 +1,648 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fffaf1;
+    color: #5b2c1d;
+    padding-top: 80px;
+    cursor: url('Asset/Cursor.png') 0 0, auto; /* supaya konten tidak tertutup header */
+  }
+  
+  header {
+  background-image: url('Asset/Spiral.png');
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 48px;
+  margin-right: 12px;
+}
+
+.logo h1 {
+  font-family: 'Jomhuria', cursive;
+  font-size: 2.8rem;
+  color: #6e2d25;
+  margin: 0;
+}
+
+
+nav {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+#why-us {
+  scroll-margin-top: 75px; /* Sesuaikan dengan tinggi navbar kamu */
+}
+
+#deskripsi {
+  scroll-margin-top: 220px; /* Sesuaikan dengan tinggi navbar kamu */
+}
+
+
+nav a {
+  font-family: 'Poppins', sans-serif;
+  margin-right: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #680307;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #8b3c2e;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 50px; /* bikin agak oval */
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-btn:hover {
+  border-color: #5b2c1d; /* outline muncul */
+  background-color: transparent;
+  color: #7c1f1f;
+}
+
+  
+  .login-btn {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fcecd5;
+  color: #7c1f1f;
+  padding: 8px 18px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+  background-color: #8c5d4d;
+  transform: translateY(-2px);
+}
+  
+  .hero {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(to bottom, #fff3d8, #f9e4c8);
+  }
+  
+  .hero h2 {
+    font-family: 'Chewy', cursive;
+    font-size: 3rem;
+    color: #7c1f1f;
+  }
+  
+  .hero span {
+    font-weight: bold;
+    font-size: 3.2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 1rem auto;
+  }
+  
+  .hero-img {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+  object-position: center;
+  }
+  
+  .fitur {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: #f4d6b8;
+  }
+  
+  .fitur h3 {
+    font-family: 'Chewy', cursive;
+    font-size: 2rem;
+    color: #9a2e2e;
+  }
+  
+  .cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .card {
+    background-color: #fff6ea;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .card img {
+    max-width: 100%;
+  }
+  
+  .card button {
+    margin-top: 1rem;
+    background-color: #9c5b3f;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .card-box {
+  background-color: #fcecd5;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 280px;
+}
+
+.card-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card-box img {
+  width: 100%;
+  max-width: 120px;
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #20233c;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.card-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #5b2c1d;
+  background-color: #e7c9ad;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  cursor: default;
+}
+  
+  .aplikasi {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: #ffecd0;
+  }
+  
+  .aplikasi button {
+    background-color: #9c5b3f;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    font-weight: bold;
+    border: none;
+    margin: 1rem 0;
+    cursor: pointer;
+  }
+  
+  .desain-wrapper {
+  background-image: url('Asset/Spiral.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 40px 0;
+  width: 100%;
+}
+
+/* Tetap jaga isi .desain supaya di tengah */
+.desain {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+  
+  .desain-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  footer {
+  background-color: #3e2418;
+  color: #fff;
+  padding: 40px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+  border-top: 1px solid #e4c8aa; /* garis tipis atas */
+}
+  
+  .footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 32px;
+}
+  
+  .footer-content div {
+  flex: 1 1 200px;
+}
+
+.footer-content h4 {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffe6c7;
+}
+
+.footer-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-content ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #e0c2a6;
+}
+
+.footer-content p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e0c2a6;
+}
+
+.sosmed-icons a {
+  margin-right: 10px;
+}
+
+.sosmed-icons img {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+footer .copyright {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #d8c0aa;
+}
+
+  .section-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem; /* sebelumnya 2.4rem */
+  color: #6e2d25;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+.section-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem; /* sebelumnya 1rem */
+  color: #5b2c1d;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+section.why-us {
+  margin-top: 0;
+  padding-top: 2rem; /* Ini tetap boleh kalau mau ada ruang untuk logo */
+  padding-bottom: 4rem;
+}
+
+.why-us {
+  background-image: url('Asset/Spiral.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.why-us-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  padding: 0 2rem;
+  margin-bottom: 1rem;
+}
+
+.why-us-header {
+  display: flex;
+  align-items: center; /* Vertikal center */
+  justify-content: center; /* Horizontal center */
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.why-us-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800; /* ExtraBold */
+  font-size: 1.75rem; /* atau sesuai kebutuhan */
+  margin: 0;
+}
+
+
+.capy-logo-wrapper {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.capy-logo {
+  width: 80px;   /* atur sesuai kebutuhan */
+  height: auto;
+  flex-shrink: 0; /* cegah gambar mengecil atau membesar mengikuti container */
+}
+
+.bold-italic {
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'Poppins', sans-serif; /* pastikan ini terpasang */
+  font-size: 1.25rem; /* Sesuaikan ukuran jika perlu */
+  text-align: left;
+}
+
+.bold-itali {
+  color: #fcecd5;
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'Poppins', sans-serif; /* pastikan ini terpasang */
+  font-size: 1.25rem; /* Sesuaikan ukuran jika perlu */
+  text-align: left;
+}
+
+.medium-text {
+  color: #fcecd5;
+  font-weight: 500; /* Poppins Medium */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Sesuaikan agar sama seperti gambar */
+  text-align: left;
+  margin-top: 0.5rem; /* Sesuaikan spasi */
+}
+
+.button-primary {
+  background-color: #4F46E5; /* warna ungu */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.section-aplikasi {
+  background-color: #a1745e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 170px; /* ini yang bikin lebih ke tengah */
+  max-width: 1200px;  /* batas lebar maksimum */
+  margin: 0 auto;     /* center di layar */
+  gap: 40px;
+}
+
+.section-why-us {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+
+.left-content {
+  flex: 1;
+  text-align: left;
+}
+
+.right-images {
+  display: flex;
+  flex-direction: row; /* <-- sekarang gambar akan sejajar horizontal */
+  gap: 1rem;
+  align-items: flex-start; /* bisa disesuaikan sesuai posisi vertikal gambar */
+}
+
+.right-images img {
+  width: 150px;    /* Ukuran lebar gambar, bisa disesuaikan */
+  height: 150px;   /* Tinggi juga disamakan supaya seragam */
+  object-fit: cover; /* Agar isi gambar tetap proporsional */
+  border-radius: 1rem; /* Opsional, untuk sudut membulat */
+}
+
+.gambar-besar {
+  width: 260px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.konten-kanan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.gambar-empat {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center; /* kalau terlalu rapat ke atas */
+}
+
+.gambar-empat img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.deskripsi {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center; /* tambahkan ini untuk beri jarak ke bawah gambar */
+}
+
+
+.box {
+  background-color: #f9f1d7;
+  padding: 16px;
+  border-radius: 8px;
+  width: 260px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.box:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* shadow lembut */
+  transform: translateY(-5px); /* sedikit naik saat hover */
+}
+
+
+.box h4 {
+  font-weight: bold;
+  color: #8b4b2d;
+}
+
+.tutorial-section {
+  padding: 40px 20px;
+  background-image: url('Asset/Spiral3.png');
+  background-size: contain; /* Contoh warna latar, sesuaikan */
+}
+
+
+.tutorial-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tutorial-left, .tutorial-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tutorial-left h3,
+.tutorial-right h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #4b3b2b; /* warna coklat sesuai tema */
+}
+
+.tutorial-left video,
+.tutorial-right video {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.tutorial-center {
+  flex: 0.8;
+  text-align: center;
+}
+
+.tutorial-center img {
+  max-width: 100%;
+  padding: 5px 30px 20px 30px; /* ubah 60px jadi 20px atau lebih kecil */
+  height: auto;
+  margin-top: -5px; /* atau hilangkan nilai height: 10; karena 10 bukan satuan valid */
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px); /* naik 15px */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.tutorial-center img {
+  max-width: 100%;
+  padding: 5px 30px 20px 30px;
+  height: auto;
+
+  animation: floating 3s ease-in-out infinite; /* animasi floating selama 3 detik, loop terus */
+}
+
+
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .tutorial-container {
+    flex-direction: column;
+  }
+  
+  .tutorial-left,
+  .tutorial-right,
+  .tutorial-center {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Poppins&display=swap');
+
+.tutorial-center {
+  flex: 0.8;
+  text-align: center;
+}
+
+.tutorial-center img {
+  max-width: 100%;
+  padding: 5px 30px 20px 30px;
+  height: auto;
+}
+
+.tutorial-title {
+  font-family: 'Jomhuria', cursive;
+  font-size: 48px; /* bisa kamu sesuaikan */
+  margin: 0;
+  line-height: 1;
+}
+
+.tutorial-subtext {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #333;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
+
